@@ -36,7 +36,7 @@ class BookMovieStickets extends Component {
                 </div>
 
                 <div className="d-flex mt-4 flex-row justify-content-center">
-                  <div className="screen mb-5  d-flex flex-row justify-content-center">
+                  <div className="screen mb-4  d-flex flex-row justify-content-center">
                     <p style={{ position: "absolute" }} className="mt-2">
                       SCREEN
                     </p>
