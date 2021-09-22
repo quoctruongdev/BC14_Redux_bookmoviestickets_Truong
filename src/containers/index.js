@@ -35,7 +35,7 @@ class BookMovieStickets extends Component {
                   BOOKING MOVIE STICKETS
                 </div>
 
-                <div className="d-flex mt-4 flex-row justify-content-center">
+                <div className="d-flex mt-3 flex-row justify-content-center">
                   <div className="screen mb-4  d-flex flex-row justify-content-center">
                     <p style={{ position: "absolute" }} className="mt-2">
                       SCREEN

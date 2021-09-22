@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 class RowSeats extends Component {
   renderRowSeats = () => {
-    const { seatsList } = this.props;
+    const { seatsList, seatSelected } = this.props;
     return seatsList.map((rowseats, index) => {
       let numberSeats = rowseats.danhSachGhe.map((seats, index) => {
         let cssbookedSeat = "";
@@ -13,10 +13,21 @@ class RowSeats extends Component {
           cssbookedSeat = "BookedSeats";
           disabled = true;
         }
+        let cssCurrentSelection = "";
+        let ListSeatSelected = seatSelected.findIndex(
+          (Selected) => Selected.soGhe === seats.soGhe
+        );
+        if (ListSeatSelected !== -1) {
+          cssCurrentSelection = "CurrentSelection";
+        }
+
         return (
           <button
+            onClick={() => {
+              this.props.bookSeat(seats);
+            }}
             disabled={disabled}
-            className={`seat ${cssbookedSeat}`}
+            className={`seat ${cssbookedSeat} ${cssCurrentSelection}`}
             key={index}
           >
             {seats.soGhe}
@@ -42,7 +53,7 @@ class RowSeats extends Component {
   render() {
     return (
       <div
-        className="text-light text-left mt-3"
+        className="text-warning text-left mt-3"
         style={{ fontSize: "35px", marginLeft: "62px" }}
       >
         {this.renderRowSeats()}
@@ -53,8 +64,18 @@ class RowSeats extends Component {
 const mapStateToProps = (state) => {
   return {
     seatsList: state.userReducer.seatsList,
-    seatsListHang: state.userReducer.seatsList.hang,
+    seatSelected: state.userReducer.seatSelected,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    bookSeat: (seats) => {
+      dispatch({
+        type: "SELECT_SEAT",
+        seats
+      });
+    },
   };
 };
 
-export default connect(mapStateToProps, null)(RowSeats);
+export default connect(mapStateToProps, mapDispatchToProps)(RowSeats);

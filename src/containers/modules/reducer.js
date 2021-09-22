@@ -154,23 +154,6 @@ const initialState = {
       ],
     },
     {
-      hang: "I",
-      danhSachGhe: [
-        { soGhe: "I1", gia: 75000, daDat: false },
-        { soGhe: "I2", gia: 75000, daDat: false },
-        { soGhe: "I3", gia: 75000, daDat: false },
-        { soGhe: "I4", gia: 75000, daDat: false },
-        { soGhe: "I5", gia: 75000, daDat: false },
-        { soGhe: "I6", gia: 75000, daDat: false },
-        { soGhe: "I7", gia: 75000, daDat: false },
-        { soGhe: "I8", gia: 75000, daDat: false },
-        { soGhe: "I9", gia: 75000, daDat: false },
-        { soGhe: "I10", gia: 75000, daDat: false },
-        { soGhe: "I11", gia: 75000, daDat: false },
-        { soGhe: "I12", gia: 75000, daDat: false },
-      ],
-    },
-    {
       hang: "J",
       danhSachGhe: [
         { soGhe: "J1", gia: 75000, daDat: false },
@@ -187,11 +170,55 @@ const initialState = {
         { soGhe: "J12", gia: 75000, daDat: false },
       ],
     },
+    {
+      hang: "K",
+      danhSachGhe: [
+        { soGhe: "K1", gia: 75000, daDat: false },
+        { soGhe: "K2", gia: 75000, daDat: false },
+        { soGhe: "K3", gia: 75000, daDat: false },
+        { soGhe: "K4", gia: 75000, daDat: false },
+        { soGhe: "K5", gia: 75000, daDat: false },
+        { soGhe: "K6", gia: 75000, daDat: false },
+        { soGhe: "K7", gia: 75000, daDat: false },
+        { soGhe: "K8", gia: 75000, daDat: false },
+        { soGhe: "K9", gia: 75000, daDat: false },
+        { soGhe: "K10", gia: 75000, daDat: false },
+        { soGhe: "K11", gia: 75000, daDat: false },
+        { soGhe: "K12", gia: 75000, daDat: false },
+      ],
+    },
+  ],
+  seatSelected: [
+ 
   ],
 };
 
 const userReducer = (state = initialState, action) => {
-  console.log(action);
+  switch (action.type) {
+    case "SELECT_SEAT":
+      let listSelectedUpdate = [...state.seatSelected];
+      let india = listSelectedUpdate.findIndex(
+        (Selected) => Selected.soGhe === action.seats.soGhe
+      );
+      if (india !== -1) {
+        listSelectedUpdate.splice(india, 1);
+      } else {
+        listSelectedUpdate.push(action.seats);
+      }
+      state.seatSelected = listSelectedUpdate;
+      return { ...state };
+
+    case "CANCEL_SEAT":
+      let SelectedUpdate = [...state.seatSelected];
+      let index = SelectedUpdate.findIndex(
+        (item) => item.seats === action.seats
+      );
+      if (index !== -1) {
+        SelectedUpdate.splice(index, 1);
+      }
+      state.seatSelected = SelectedUpdate;
+      return { ...state };
+  }
 
   return { ...state };
 };
