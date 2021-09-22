@@ -1,0 +1,22 @@
+=====Cấu hình redux====
+    *index.js
+        -import createStore
+        -tạo biến store 
+        -import Provider (bao lại App và truyền props store)
+    * tạo src/redux/reducers/index.js
+        - tạo biến rootReducer = combineReducers ({})
+        -export rootReducer
+    *Gọi trong index.js   
+        -import rootReducer và đặt làm tham số của store(const store = createStore(rootReducer);)    
+    * Tạo child reducer (reducers/user.js)
+        -tạo fnc userReducer() và export
+        -tạo biến initialState{} (copy state vô)
+        - gán và return const userReducer = (state = initialState) => {
+        return { ...state };
+    * Quay lại rootReducer /index.js 
+        -import và combine lại userReducer
+
+
+
+    *Hàm sử dụng: mapStateToProps(state), import connec từ react-redux và export conect (mapStateToProps,null)
+};
